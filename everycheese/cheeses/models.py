@@ -4,7 +4,7 @@ from autoslug import AutoSlugField
 from model_utils.models import TimeStampedModel
 
 from django_countries.fields import CountryField
-
+from django.urls import reverse
 
 class Cheese(TimeStampedModel):
     class Firmness(models.TextChoices):
@@ -13,6 +13,11 @@ class Cheese(TimeStampedModel):
         SEMI_SOFT = "semi-soft", "Semi-Soft"
         SEMI_HARD = "semi-hard", "Semi-Hard"
         HARD = "hard", "Hard"
+
+    def get_absolute_url(self):
+        """Return absolute URL to the Cheese Detail page."""
+        return reverse('cheeses:detail',
+                       kwargs={"slug": self.slug})
 
     name = models.CharField("Name of Cheese", max_length=255)
     slug = AutoSlugField("Cheese Address", unique=True, always_update=False, populate_from="name")
