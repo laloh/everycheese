@@ -2,6 +2,7 @@
 
 {% block title %}Cheeses: {{ cheese.name }} {% endblock %}
 
+
 {% block content %}
 
   <h2>{{ cheese.name }}</h2>
@@ -29,5 +30,9 @@
   {% if cheese.creator.name %}
     <p>{{ cheese.creator.name }}</p>
   {% endif %}
+
+  <p>
+    <a class="btn btn-primary" href="{% url 'cheeses:update' cheese.slug %}" role="button">Update</a>
+  </p>
 
 {% endblock content %}
