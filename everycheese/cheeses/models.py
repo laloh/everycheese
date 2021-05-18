@@ -6,6 +6,7 @@ from model_utils.models import TimeStampedModel
 from django_countries.fields import CountryField
 from django.urls import reverse
 
+
 class Cheese(TimeStampedModel):
     class Firmness(models.TextChoices):
         UNSPECIFIED = "unspecified", "Unspecified"
